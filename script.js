@@ -17,7 +17,6 @@ function fetchDatosClima(ciudad) {
 }
 
 function mostrarDatosClima(data) {
-    console.log(data);
     const divDatosClima = document.getElementById('datosClima');
     divDatosClima.innerHTML = '';
 
@@ -28,6 +27,7 @@ function mostrarDatosClima(data) {
     const temperaturaMinima = data.list[0].main.temp_min;
     const humedad = data.list[0].main.humidity;
     const description = data.list[0].weather[0].description;
+    const icono = data.list[0].weather[0].icon;
     
     const ciudadTitulo = document.createElement('h2');
     ciudadTitulo.textContent = `${ciudadNombre}, ${paisNombre}`;
@@ -44,6 +44,9 @@ function mostrarDatosClima(data) {
     const humedadInfo = document.createElement('p');
     humedadInfo.textContent = `La humedad es: ${humedad}%`;
 
+    const iconoInfo = document.createElement('img');
+    iconoInfo.src = `https://openweathermap.org/img/wn/${icono}.png`;
+
     const descriptionInfo = document.createElement('p');
     descriptionInfo.textContent = `La descripcion meteorologica es: ${description}`;
 
@@ -52,5 +55,6 @@ function mostrarDatosClima(data) {
     divDatosClima.appendChild(temperaturaMaximaInfo);
     divDatosClima.appendChild(temperaturaMinimaInfo);
     divDatosClima.appendChild(humedadInfo);
+    divDatosClima.appendChild(iconoInfo);
     divDatosClima.appendChild(descriptionInfo);
 }
